@@ -2,9 +2,20 @@ pipeline {
 	agent any
 
 	stages {
-		stage ('One') {
+		stage ('Compile Stage') {
 			steps {
-				echo 'This is jahir !!'
+				echo 'Start Building !!'
+				withMaven(maven: 'maven_3_6_0') {
+					sh 'mvn clean compile'
+				}
+			}
+		}
+		stage ('Testing Stage') {
+			steps {
+				echo 'Start Building !!'
+				withMaven(maven: 'maven_3_6_0') {
+					sh 'mvn test'
+				}
 			}
 		}
 	} 
